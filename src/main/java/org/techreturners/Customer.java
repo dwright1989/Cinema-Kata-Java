@@ -25,4 +25,5 @@ public class Customer {
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
     }
+
 }
