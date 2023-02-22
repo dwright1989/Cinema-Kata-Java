@@ -18,11 +18,6 @@ public class Cinema {
     public List<Seat> getSeats() {
         return seats;
     }
-
-    public Seat getNextSeat(Seat seat){
-        return seats.get((seats.indexOf(seat))+1);
-    }
-
     public List<Seat> checkSeatsAvailable(int num){
         List<Seat> seatsToBook = new ArrayList<>();
         for(int i=0; i<seats.size(); i++){
