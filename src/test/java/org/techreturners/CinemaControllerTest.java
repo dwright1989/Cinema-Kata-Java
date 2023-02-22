@@ -29,5 +29,7 @@ public class CinemaControllerTest {
         seats.add(new Seat('C', 5, true));
         CinemaController cinemaController = new CinemaController(seats);
         assertTrue(cinemaController.bookTickets(1));
+        assertEquals(cinemaController.getCustomer().getSeats().size(), 1);
+        assertFalse(cinemaController.getCinema().getSeats().get(0).isAvailable());
     }
 }

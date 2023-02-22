@@ -1,5 +1,6 @@
 package org.techreturners;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
@@ -8,6 +9,7 @@ public class Customer {
 
     public Customer(String name) {
         this.name = name;
+        this.seats = new ArrayList<>();
     }
 
     public String getName() {

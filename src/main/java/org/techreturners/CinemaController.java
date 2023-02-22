@@ -16,6 +16,8 @@ public class CinemaController {
     public boolean bookTickets(int num){
         for(Seat seat: cinema.getSeats()){
             if(seat.isAvailable()){
+                seat.setAvailable(false);
+                customer.getSeats().add(seat);
                 return true;
             }
         }
@@ -23,8 +25,19 @@ public class CinemaController {
     }
 
 
+    public Cinema getCinema() {
+        return cinema;
+    }
 
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
 
+    public Customer getCustomer() {
+        return customer;
+    }
 
-
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
