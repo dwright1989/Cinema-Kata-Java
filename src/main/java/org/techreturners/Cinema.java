@@ -29,6 +29,7 @@ public class Cinema {
     }
 
     public void printSeats() {
+        System.out.println("Welcome to " + name + " Cinema");
         char currentRow = ' ';
         for (Seat seat : this.seats) {
             if(currentRow != seat.getRow()){
