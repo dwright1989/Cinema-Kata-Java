@@ -30,8 +30,11 @@ public class Cinema {
             if(currentSeat.isAvailable()){
                 seatsToBook.add(currentSeat);
                 for(int j=1; j<num; j++){
-                    Seat nextSeat = seats.get(i+j);
-                    if(nextSeat.isAvailable() && nextSeat.getRow()==currentSeat.getRow()){
+                    Seat nextSeat = null;
+                    if(seats.size()>i+j+1){
+                        nextSeat = seats.get(i+j);
+                    }
+                    if(nextSeat!=null && nextSeat.isAvailable() && nextSeat.getRow()==currentSeat.getRow()){
                         seatsToBook.add(nextSeat);
                     }else{
                         seatsToBook.clear();
