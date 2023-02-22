@@ -19,21 +19,22 @@ public class CinemaController {
         for(int i=0; i<seats.size(); i++){
             Seat currentSeat = seats.get(i);
             if(seats.size()>i+1){
-                nextSeat = seats.get(1);
+                nextSeat = seats.get(i+1);
             }
             if(currentSeat.isAvailable()){
                 if(num>1 && !nextSeat.isAvailable()){
                     return false;
-                }else{
+                }else if(currentSeat.getRow()==nextSeat.getRow()){
                     if(num>1){
                         nextSeat.setAvailable(false);
                         customer.getSeats().add(nextSeat);
                     }
-                    currentSeat.setAvailable(false);
-                    customer.getSeats().add(currentSeat);
-                    return true;
+                }else{
+                    continue;
                 }
-
+                currentSeat.setAvailable(false);
+                customer.getSeats().add(currentSeat);
+                return true;
             }
         }
         return false;
