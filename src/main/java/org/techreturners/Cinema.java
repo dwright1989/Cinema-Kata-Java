@@ -1,4 +1,5 @@
 package org.techreturners;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cinema {
@@ -17,6 +18,43 @@ public class Cinema {
     public List<Seat> getSeats() {
         return seats;
     }
+
+    public Seat getNextSeat(Seat seat){
+        return seats.get((seats.indexOf(seat))+1);
+    }
+
+    public List<Seat> checkSeatsAvailable(int num){
+        List<Seat> seatsToBook = new ArrayList<>();
+        for(int i=0; i<seats.size(); i++){
+            Seat currentSeat = seats.get(i);
+            if(currentSeat.isAvailable()){
+                seatsToBook.add(currentSeat);
+                for(int j=1; j<num; j++){
+                    Seat nextSeat = seats.get(i+j);
+                    if(nextSeat.isAvailable() && nextSeat.getRow()==currentSeat.getRow()){
+                        seatsToBook.add(nextSeat);
+                    }else{
+                        seatsToBook.clear();
+                    }
+                }
+                if(seatsToBook.size()==num){
+                    break;
+                }
+            }
+        }
+        return seatsToBook;
+    }
+
+
+    public List<Seat> bookTickets(int num){
+        List<Seat> seatsToBook = checkSeatsAvailable(num);
+        for(Seat seatToBook: seatsToBook){
+           seatToBook.setAvailable(false);
+        }
+        return seatsToBook;
+    }
+
+
 
     public void printSeats() {
         System.out.println("Welcome to " + name + " Cinema");
