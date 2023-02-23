@@ -363,6 +363,49 @@ public class CinemaTest {
     }
 
     @Test
+    public void isSoldOutYes(){
+        List<Seat> seats = new ArrayList<Seat>();
+        seats.add(new Seat('A', 1, false));
+        seats.add(new Seat('A', 2, false));
+        seats.add(new Seat('A', 3, false));
+        seats.add(new Seat('A', 4, false));
+        seats.add(new Seat('A', 5, false));
+        seats.add(new Seat('B', 1, false));
+        seats.add(new Seat('B', 2, false));
+        seats.add(new Seat('B', 3, false));
+        seats.add(new Seat('B', 4, false));
+        seats.add(new Seat('B', 5, false));
+        seats.add(new Seat('C', 1, false));
+        seats.add(new Seat('C', 2, false));
+        seats.add(new Seat('C', 3, false));
+        seats.add(new Seat('C', 4, false));
+        seats.add(new Seat('C', 5, false));
+        Cinema cinema = new Cinema("Cinnamon", seats);
+        assertTrue(cinema.soldOut());
+    }
+
+    @Test
+    public void isSoldOutNo(){
+        List<Seat> seats = new ArrayList<Seat>();
+        seats.add(new Seat('A', 1, false));
+        seats.add(new Seat('A', 2, false));
+        seats.add(new Seat('A', 3, false));
+        seats.add(new Seat('A', 4, false));
+        seats.add(new Seat('A', 5, false));
+        seats.add(new Seat('B', 1, false));
+        seats.add(new Seat('B', 2, false));
+        seats.add(new Seat('B', 3, true));
+        seats.add(new Seat('B', 4, false));
+        seats.add(new Seat('B', 5, false));
+        seats.add(new Seat('C', 1, false));
+        seats.add(new Seat('C', 2, false));
+        seats.add(new Seat('C', 3, false));
+        seats.add(new Seat('C', 4, false));
+        seats.add(new Seat('C', 5, false));
+        Cinema cinema = new Cinema("Cinnamon", seats);
+        assertFalse(cinema.soldOut());
+    }
+    @Test
     public void canPrintArray(){
         Cinema cinema = new Cinema("Cinnamon", seats);
         cinema.printSeats();

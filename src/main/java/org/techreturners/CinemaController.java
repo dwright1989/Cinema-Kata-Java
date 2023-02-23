@@ -20,13 +20,29 @@ public class CinemaController {
         return customer;
     }
 
-    public void bookTickets(int num){
+    public boolean bookTickets(int num){
         List<Seat> bookedSeats = cinema.bookTickets(num);
         customer.setSeats(bookedSeats);
+        return bookedSeats.size()>0;
     }
 
-    /*public randomlyFillSeats(){
-
-    }*/
+    public void randomlyFillSeats(){
+        int randomNumber;
+        while(!cinema.soldOut()){
+            randomNumber = (int) (Math.random() * 3 + 1);
+            System.out.print("\033[1;32m");
+            System.out.print("looking for " + randomNumber + " seats");
+            boolean success = bookTickets(randomNumber);
+            cinema.printSeats();
+           if(success){
+               System.out.println("Tickets booked!");
+           }
+            else{
+                System.out.println("None left, sorry");
+            }
+            System.out.println();
+        }
+        System.out.println("Movie sold out!");
+    }
 
 }

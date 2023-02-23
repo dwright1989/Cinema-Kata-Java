@@ -26,7 +26,7 @@ public class Cinema {
                 seatsToBook.add(currentSeat);
                 for(int j=1; j<num; j++){
                     Seat nextSeat = null;
-                    if(seats.size()>i+j+1){
+                    if(seats.size()>i+j){
                         nextSeat = seats.get(i+j);
                     }
                     if(nextSeat!=null && nextSeat.isAvailable() && nextSeat.getRow()==currentSeat.getRow()){
@@ -52,10 +52,18 @@ public class Cinema {
         return seatsToBook;
     }
 
+    public boolean soldOut(){
+        for(Seat seat: seats){
+            if(seat.isAvailable()){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
     public void printSeats() {
-        System.out.println("Welcome to " + name + " Cinema");
         char currentRow = ' ';
         for (Seat seat : this.seats) {
             if(currentRow != seat.getRow()){
@@ -69,5 +77,6 @@ public class Cinema {
             }
             System.out.print(seat.getRow() + "" + seat.getNumber() + " ");
         }
+        System.out.println();
     }
 }

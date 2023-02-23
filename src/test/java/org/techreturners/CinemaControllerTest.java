@@ -34,10 +34,19 @@ public class CinemaControllerTest {
         cinemaController = new CinemaController(seats, "Cinnamon", "Debbie");
     }
 
+
     @Test
     public void canBookTickets(){
         cinemaController.bookTickets(3);
         assertEquals(cinemaController.getCustomer().getSeats().size(), 3);
     }
+
+
+    @Test
+    public void randomlyAssignSeats(){
+        cinemaController.randomlyFillSeats();
+    }
+
+
 
 }
