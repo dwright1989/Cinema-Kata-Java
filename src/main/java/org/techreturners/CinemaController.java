@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.techreturners.Validation.isValidSelection;
+
 public class CinemaController {
 
     Cinema cinema;
@@ -30,6 +32,10 @@ public class CinemaController {
                 System.out.println("[1] Yes");
                 System.out.println("[2] No");
                 String sitTogetherString = scanner.next();
+                while(!isValidSelection(sitTogetherString)){
+                    System.out.println("Please enter a valid selection");
+                    sitTogetherString = scanner.next();
+                }
                 sitTogether = sitTogetherString.equals("1");
             }
             if(bookTickets(ticketNumber, sitTogether)){
