@@ -1,15 +1,40 @@
 package org.techreturners;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CinemaController {
 
     Cinema cinema;
     Customer customer;
 
+    Scanner scanner;
+
     public CinemaController(String cinemaName, String customerName) {
+        scanner = new Scanner(System.in);
         cinema = new Cinema(cinemaName, generateSeats());
         customer = new Customer(customerName);
+        start();
+    }
+
+    private void start(){
+        System.out.print("\033[1;32m");
+        System.out.println("Welcome to: " + cinema.getName() + " cinema");
+        while(!cinema.soldOut()){
+            System.out.println("Look at the screen below and decide how many seats you would like.");
+            cinema.printSeats();
+            int ticketNumber = scanner.nextInt();
+            boolean success = bookTickets(ticketNumber);
+            if(success){
+                cinema.printSeats();
+                System.out.println("Tickets booked!");
+            }
+            else{
+                System.out.println("Not enough seats left, sorry");
+            }
+            System.out.println();
+        }
+        System.out.println("Movie sold out!");
     }
 
     private List<Seat> generateSeats() {
