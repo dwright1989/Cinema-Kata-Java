@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    These tests are when the user wants the tickets to be on the same row
+ */
 
-
-public class CinemaTest {
+public class CinemaSeatsTogetherTest {
 
     List<Seat> seats;
 
@@ -65,7 +67,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(1);
+        List<Seat> bookedSeats = cinema.bookTickets(1, true);
         assertEquals(bookedSeats.size(), 1);
         assertEquals(bookedSeats.get(0), seats.get(0));
         assertFalse(seats.get(0).isAvailable());
@@ -90,7 +92,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(1);
+        List<Seat> bookedSeats = cinema.bookTickets(1, true);
         assertEquals(bookedSeats.size(), 1);
         assertEquals(bookedSeats.get(0), seats.get(1));
         assertFalse(seats.get(1).isAvailable());
@@ -115,7 +117,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(1);
+        List<Seat> bookedSeats = cinema.bookTickets(1, true);
         assertEquals(bookedSeats.size(), 1);
         assertEquals(bookedSeats.get(0), seats.get(5));
         assertFalse(seats.get(5).isAvailable());
@@ -140,7 +142,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, false));
         seats.add(new Seat('C', 5, false));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(1);
+        List<Seat> bookedSeats = cinema.bookTickets(1, true);
         assertEquals(bookedSeats.size(), 0);
     }
 
@@ -163,7 +165,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(2);
+        List<Seat> bookedSeats = cinema.bookTickets(2, true);
         assertEquals(bookedSeats.size(), 2);
         assertEquals(bookedSeats.get(0), seats.get(0));
         assertEquals(bookedSeats.get(1), seats.get(1));
@@ -190,7 +192,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(2);
+        List<Seat> bookedSeats = cinema.bookTickets(2, true);
         assertEquals(bookedSeats.size(), 2);
         assertEquals(bookedSeats.get(0), seats.get(5));
         assertEquals(bookedSeats.get(1), seats.get(6));
@@ -220,7 +222,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, false));
         seats.add(new Seat('C', 5, false));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(2);
+        List<Seat> bookedSeats = cinema.bookTickets(2, true);
         assertEquals(bookedSeats.size(), 0);
         assertTrue(seats.get(1).isAvailable());
         assertTrue(seats.get(4).isAvailable());
@@ -246,7 +248,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, false));
         seats.add(new Seat('C', 5, false));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(2);
+        List<Seat> bookedSeats = cinema.bookTickets(2, true);
         assertEquals(bookedSeats.size(), 0);
         assertTrue(seats.get(1).isAvailable());
         assertTrue(seats.get(12).isAvailable());
@@ -274,7 +276,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(3);
+        List<Seat> bookedSeats = cinema.bookTickets(3, true);
         assertEquals(bookedSeats.size(), 3);
         assertEquals(bookedSeats.get(0), seats.get(0));
         assertEquals(bookedSeats.get(1), seats.get(1));
@@ -303,7 +305,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, true));
         seats.add(new Seat('C', 5, true));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(3);
+        List<Seat> bookedSeats = cinema.bookTickets(3, true);
         assertEquals(bookedSeats.size(), 0);
         assertTrue(seats.get(3).isAvailable());
         assertTrue(seats.get(4).isAvailable());
@@ -329,7 +331,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, false));
         seats.add(new Seat('C', 5, false));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(3);
+        List<Seat> bookedSeats = cinema.bookTickets(3, true);
         assertEquals(bookedSeats.size(), 0);
         assertTrue(seats.get(1).isAvailable());
         assertTrue(seats.get(2).isAvailable());
@@ -355,7 +357,7 @@ public class CinemaTest {
         seats.add(new Seat('C', 4, false));
         seats.add(new Seat('C', 5, false));
         Cinema cinema = new Cinema("Cinnamon", seats);
-        List<Seat> bookedSeats = cinema.bookTickets(3);
+        List<Seat> bookedSeats = cinema.bookTickets(3, true);
         assertEquals(bookedSeats.size(), 0);
         assertTrue(seats.get(1).isAvailable());
         assertTrue(seats.get(6).isAvailable());

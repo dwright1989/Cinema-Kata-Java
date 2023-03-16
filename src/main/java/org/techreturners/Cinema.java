@@ -18,7 +18,7 @@ public class Cinema {
     public List<Seat> getSeats() {
         return seats;
     }
-    public List<Seat> checkSeatsAvailable(int num){
+    public List<Seat> checkSeatsAvailable(int num, boolean together){
         List<Seat> seatsToBook = new ArrayList<>();
         for(int i=0; i<seats.size(); i++){
             Seat currentSeat = seats.get(i);
@@ -29,8 +29,14 @@ public class Cinema {
                     if(seats.size()>i+j){
                         nextSeat = seats.get(i+j);
                     }
-                    if(nextSeat!=null && nextSeat.isAvailable() && nextSeat.getRow()==currentSeat.getRow()){
-                        seatsToBook.add(nextSeat);
+                    if(nextSeat!=null && nextSeat.isAvailable()){
+                        if(together && nextSeat.getRow()==currentSeat.getRow()){
+                            seatsToBook.add(nextSeat);
+                        }else if(!together){
+                            seatsToBook.add(nextSeat);
+                        }else{
+                            seatsToBook.clear();
+                        }
                     }else{
                         seatsToBook.clear();
                     }
@@ -44,8 +50,8 @@ public class Cinema {
     }
 
 
-    public List<Seat> bookTickets(int num){
-        List<Seat> seatsToBook = checkSeatsAvailable(num);
+    public List<Seat> bookTickets(int num, boolean together){
+        List<Seat> seatsToBook = checkSeatsAvailable(num, together);
         for(Seat seatToBook: seatsToBook){
            seatToBook.setAvailable(false);
         }

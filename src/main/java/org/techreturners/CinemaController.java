@@ -24,12 +24,15 @@ public class CinemaController {
             System.out.println("Look at the screen below and decide how many seats you would like.");
             cinema.printSeats();
             int ticketNumber = scanner.nextInt();
-            System.out.println("Do you need to sit together?");
-            System.out.println("[1] Yes");
-            System.out.println("[2] No");
-            String sitTogether = scanner.next();
-            boolean success = bookTickets(ticketNumber);
-            if(success){
+            boolean sitTogether = true;
+            if(ticketNumber>1){
+                System.out.println("Do you need to sit on the same row? (If no, seats will be wrapped onto next row).");
+                System.out.println("[1] Yes");
+                System.out.println("[2] No");
+                String sitTogetherString = scanner.next();
+                sitTogether = sitTogetherString.equals("1");
+            }
+            if(bookTickets(ticketNumber, sitTogether)){
                 cinema.printSeats();
                 System.out.println("Tickets booked!");
             }
@@ -57,14 +60,11 @@ public class CinemaController {
         return i<0 || i>25 ? '?' : (char)('A' + i);
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public boolean bookTickets(int num){
-        List<Seat> bookedSeats = cinema.bookTickets(num);
+    public boolean bookTickets(int num, boolean together){
+        List<Seat> bookedSeats = cinema.bookTickets(num, together);
         customer.setSeats(bookedSeats);
         return bookedSeats.size()>0;
     }
+
 
 }
