@@ -5,14 +5,14 @@ The movie theatre has three rows (A, B, C) of five seats (1,2,3,4,5).
 Methods ensure that a user can select a number of seats.  Seats are filled from front to back (A to C) left to right (1 to 5).
 The application displays a grid showing the cinema seats, as shown below.  Available seats are shown in green and booked seats in red. 
 
-![alt text](\src\main\resources\cinema.png)
+![cinema display](cinema.png)
 
 The user will be asked to enter the number of seats they would like to book and then whether they need these to be together (on the same row) or if they can wrap onto the next row. 
 As can be seen below, the user selected 5 seats and said they must be together so they have been given the next row (B1-B5). 
-![alt text](\src\main\resources\seatbooking.png)
+![seat booking](seatbooking.png)
 
 The next image shows when a user says that they do NOT  need to be seated together.
-![alt text](\src\main\resources\seatbooking2.png)
+![seat booking](seatbooking2.png)
 
 The application will continue to run until ALL seats have been booked. 
 
