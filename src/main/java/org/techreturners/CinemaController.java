@@ -1,4 +1,5 @@
 package org.techreturners;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaController {
@@ -6,10 +7,27 @@ public class CinemaController {
     Cinema cinema;
     Customer customer;
 
-    public CinemaController(List<Seat> seats, String cinemaName, String customerName) {
-        cinema = new Cinema(cinemaName, seats);
+    public CinemaController(String cinemaName, String customerName) {
+        cinema = new Cinema(cinemaName, generateSeats());
         customer = new Customer(customerName);
     }
+
+    private List<Seat> generateSeats() {
+
+        List<Seat> seats = new ArrayList<Seat>();
+        for(int i=0; i<Constants.NUM_OF_ROWS; i++){
+            char letter = getCharFromNumber(i);
+            for(int j=1; j<=Constants.NUM_OF_SEATS_IN_ROW; j++){
+                seats.add(new Seat(letter, j, true));
+            }
+        }
+        return seats;
+    }
+
+    public static char getCharFromNumber(int i) {
+        return i<0 || i>25 ? '?' : (char)('A' + i);
+    }
+
 
 
     public Cinema getCinema() {
